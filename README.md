@@ -17,10 +17,3 @@
   <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=oscardavidrm&layout=compact&langs_count=8&theme=algolia"/>
 </a>
 </p>
-
-<p align="left">
-<a href="https://www.linkedin.com/in/odrm/"><img src="https://img.shields.io/badge/-Oscar%20Rodríguez-0077B5?style=flat&logo=Linkedin&logoColor=white"/></a>
-<a href="mailto:osdavrm@gmail.com"><img src="https://img.shields.io/badge/-osdavrm@gmail.com-D14836?style=flat&logo=Gmail&logoColor=white"/></a>
-<a href="https://www.instagram.com/osdrm/"><img src="https://img.shields.io/badge/-@osdrm-E4405F?style=flat&logo=Instagram&logoColor=white"/></a>
-<a href="https://www.facebook.com/osdavrm/"><img src="https://img.shields.io/badge/-@osdavrm-1877F2?style=flat&logo=Facebook&logoColor=white"/></a>
-</p>
