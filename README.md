@@ -19,5 +19,5 @@
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=dmosc&label=Views&color=pink&style=plastic" alt="Visit count"/>
+  <img src="https://komarev.com/ghpvc/?username=dmosc&label=Views&color=blueviolet&style=plastic" alt="Visit count"/>
 </p>
