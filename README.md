@@ -18,6 +18,6 @@
 </a>
 </p>
 
-<p align="center">
+<p align="left">
   <img src="https://komarev.com/ghpvc/?username=dmosc&label=Views&color=blueviolet&style=plastic" alt="Visit count"/>
 </p>
