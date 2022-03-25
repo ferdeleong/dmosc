@@ -1,0 +1,9 @@
+# Folders
+node_modules/
+.idea/
+
+# Error files
+yarn-error.log
+
+# Secrets
+.env
