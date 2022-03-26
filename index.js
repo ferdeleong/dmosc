@@ -1,11 +1,26 @@
 const axios = require("axios");
-const app = require("express")();
+const express = require("express");
 const State = require("./state");
 const {applicationUrl} = require("./config");
+const path = require("path");
 
 const authSpotifyUrl = new URL("https://accounts.spotify.com");
 const spotifyApiUrl = new URL("https://api.spotify.com")
 let state = new State();
+
+const app = express();
+
+app.set('views', './views');
+app.set('view engine', 'pug');
+
+app.use(express.static('static'))
+
+app.get("/test", (_, res) => {
+  console.log(1);
+  res.setHeader("Content-Type", "text/html");
+  res.setHeader("Cache-Control", "max-age=1");
+  res.render("index.pug", { name: "Oscar" });
+});
 
 app.get("/validate", async (_, res) => {
   authSpotifyUrl.pathname = "/authorize";
@@ -39,6 +54,7 @@ app.get("/currently-playing", async (req, res) => {
       "Content-Type": "application/json"
     }
   });
+  console.log(data);
   return res.status(200).json(data);
 });
 
