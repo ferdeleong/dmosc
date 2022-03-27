@@ -69,6 +69,7 @@ class State {
       issuedAt: this.issuedAt,
     });
     fs.writeFileSync(path.join(__dirname, "cache.json"), payload, "utf-8")
+    // TODO(dmosc): Design a caching strategy to avoid oauth workflow.
   };
 }
 

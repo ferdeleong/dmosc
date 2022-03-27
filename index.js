@@ -2,7 +2,7 @@ const axios = require("axios");
 const express = require("express");
 const {applicationUrl} = require("./config");
 const State = require("./state");
-const SVGAudioPlayerBuilder = require("./svg-audio-player-builder");
+const SvgLoader = require("./svg-loader");
 
 const authSpotifyUrl = new URL("https://accounts.spotify.com");
 const spotifyApiUrl = new URL("https://api.spotify.com")
@@ -13,7 +13,7 @@ const app = express();
 app.get("/validate", async (_, res) => {
   authSpotifyUrl.pathname = "/authorize";
   authSpotifyUrl.searchParams.set("client_id", process.env.SPOTIFY_CLIENT_ID);
-  authSpotifyUrl.searchParams.set("scope", "user-read-currently-playing");
+  authSpotifyUrl.searchParams.set("scope", "user-read-currently-playing user-read-recently-played");
   authSpotifyUrl.searchParams.set("response_type", "code");
   authSpotifyUrl.searchParams.set("redirect_uri", `${applicationUrl}/callback`);
   res.status(200).redirect(authSpotifyUrl.toString());
@@ -47,8 +47,34 @@ app.get("/currently-playing", async (req, res) => {
     }
   });
 
+  if (!data || !data?.is_playing) {
+    return res.redirect("/recently-played");
+  }
+
   const song = data?.item;
-  const svg = await SVGAudioPlayerBuilder.loadTemplate({
+  const svg = await SvgLoader.loadTemplate({
+    song: song?.name,
+    artist: song?.artists[0].name,
+    image: song?.album.images[0].url,
+  });
+
+  res.setHeader("Content-Type", "image/svg+xml");
+  res.setHeader("Cache-Control", "s-maxage=1");
+  return res.status(200).send(svg);
+});
+
+app.get("/recently-played", async (req, res) => {
+  spotifyApiUrl.pathname = "/v1/me/player/recently-played";
+  const {data} = await axios.get(spotifyApiUrl.toString(), {
+    headers: {
+      "Authorization": `Bearer ${state.accessToken}`,
+      "Content-Type": "application/json"
+    }
+  });
+
+  const size = data?.items.length;
+  const song = data?.items[Math.floor(Math.random() * (size - 1))]?.track;
+  const svg = await SvgLoader.loadTemplate({
     song: song?.name,
     artist: song?.artists[0].name,
     image: song?.album.images[0].url,
@@ -62,8 +88,6 @@ app.get("/currently-playing", async (req, res) => {
 app.get("/", (_, res) => {
   res.send("OK").status(200);
 });
-
-app.use((_, res) => res.redirect("/currently-playing"));
 
 app.listen(process.env.PORT, () => {
   console.info(`Server ready at port: ${process.env.PORT}`);

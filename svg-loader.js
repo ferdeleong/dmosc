@@ -26,7 +26,7 @@ async function loadImageAsBase64(url) {
   return `data:image/png;base64, ${placeHolder.toString()}`;
 }
 
-class SVGAudioPlayerBuilder {
+class SvgLoader {
   static async loadTemplate(values) {
     const base64 = await loadImageAsBase64(values?.image);
     return `
@@ -57,6 +57,16 @@ class SVGAudioPlayerBuilder {
               overflow-x: hidden;
             }
             
+            #bars-container {
+              width: 100%;
+              height: 30px;
+              bottom: 1px;
+              position: absolute;
+              margin: 0;
+              padding: 0;
+              overflow-y: hidden;
+            }
+            
             #song-name-label {
               font-weight: bolder;
               font-size: large;
@@ -70,21 +80,11 @@ class SVGAudioPlayerBuilder {
               font-weight: bold;
               color: darkred;
               margin-bottom: 20px;
-              animation: ${values.artist ? "horizontal-tape 10s" : "none"};
+              animation: ${values.artist ? "horizontal-tape 8s" : "none"};
             }
             
             #album-image {
               border-radius: 5px;
-            }
-            
-            #bars-container {
-              width: 100%;
-              height: 30px;
-              bottom: 1px;
-              position: absolute;
-              margin: 0;
-              padding: 0;
-              overflow-y: hidden;
             }
             
             .bar {
@@ -96,6 +96,7 @@ class SVGAudioPlayerBuilder {
               animation: audio-bar-pop 0ms -800ms linear infinite alternate;
             }
             
+            /* Randomly generated bar animation durations on a per-child basis to offset timings */
             ${(() => {
               let css = "";
               let offset = 1;
@@ -151,4 +152,4 @@ class SVGAudioPlayerBuilder {
   }
 }
 
-module.exports = SVGAudioPlayerBuilder;
+module.exports = SvgLoader;
