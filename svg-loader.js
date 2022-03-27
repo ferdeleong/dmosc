@@ -2,7 +2,7 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 
-const AUDIO_BARS = 80;
+const AUDIO_BARS = 46;
 
 function isUrlValid(word) {
   let url;
@@ -30,8 +30,8 @@ class SvgLoader {
   static async loadTemplate(values) {
     const base64 = await loadImageAsBase64(values?.image);
     return `
-    <svg width="500" height="133" xmlns="http://www.w3.org/2000/svg">
-      <foreignObject width="500" height="133">
+    <svg width="480" height="133" xmlns="http://www.w3.org/2000/svg">
+      <foreignObject width="480" height="133">
         <div xmlns="http://www.w3.org/1999/xhtml">
           <style>
             * {
@@ -50,7 +50,7 @@ class SvgLoader {
             
             #information-container {
               width: 70%;
-              margin-left: 20px;
+              margin-left: 10px;
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -65,6 +65,14 @@ class SvgLoader {
               margin: 0;
               padding: 0;
               overflow-y: hidden;
+            }
+            
+            #status-label {
+              font-weight: lighter;
+              color: lightgray;
+              font-size: small;
+              text-align: right;
+              opacity: 0.8;
             }
             
             #song-name-label {
@@ -88,7 +96,7 @@ class SvgLoader {
             }
             
             .bar {
-              width: 3px;
+              width: 6px;
               bottom: 2px;
               height: 5px;
               position: absolute;
@@ -107,7 +115,7 @@ class SvgLoader {
                     animation-duration: ${Math.floor(Math.random() * (1350 - 800 + 1)) + 800}ms;
                   }
                 `;
-                offset += 4;
+                offset += 7;
               }
               return css;
             })()}
@@ -130,7 +138,7 @@ class SvgLoader {
                 opacity: .2;
               }
               100% {
-                height: 20px;
+                height: 25px;
                 opacity: 0.95;
               }
             }
@@ -144,6 +152,7 @@ class SvgLoader {
                 ${Array.from(Array(AUDIO_BARS)).reduce((css) => css + "<div class='bar'></div>", "")}
               </div>
             </div>
+            <label id="status-label">${values?.isCurrent ? "Currently playing" : "Recently played"}</label>
           </div>
         </div>
       </foreignObject>

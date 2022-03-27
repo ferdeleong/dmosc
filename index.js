@@ -56,6 +56,7 @@ app.get("/currently-playing", async (req, res) => {
     song: song?.name,
     artist: song?.artists[0].name,
     image: song?.album.images[0].url,
+    isCurrent: true,
   });
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -78,6 +79,7 @@ app.get("/recently-played", async (req, res) => {
     song: song?.name,
     artist: song?.artists[0].name,
     image: song?.album.images[0].url,
+    isCurrent: false,
   });
 
   res.setHeader("Content-Type", "image/svg+xml");
