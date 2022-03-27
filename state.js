@@ -28,7 +28,7 @@ class State {
 
   shouldHydrate = () => {
     const now = new Date().getTime();
-    return (now - this.issuedAt) < 3600 * 1000; // As milliseconds
+    return (now - this.issuedAt) > 3600 * 1000; // As milliseconds
   };
 
   createToken = async (code) => {
