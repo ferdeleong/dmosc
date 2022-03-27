@@ -1,12 +1,27 @@
 const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+
+function isUrlValid(word) {
+  let url;
+  try {
+    url = new URL(word);
+  } catch (_) {
+    return false;
+  }
+  return url.protocol === "http:" || url.protocol === "https:";
+}
 
 async function loadImageAsBase64(url) {
-  const payload = await axios.get(url, {responseType: "arraybuffer"});
-  if (payload) {
-    const buffer = Buffer.from(payload?.data, "utf-8").toString("base64");
-    return `data:image/png;base64, ${buffer}`;
+  if (isUrlValid(url)) {
+    const payload = await axios.get(url, {responseType: "arraybuffer"});
+    if (payload?.data) {
+      const buffer = Buffer.from(payload.data, "utf-8").toString("base64");
+      return `data:image/png;base64, ${buffer}`;
+    }
   }
-  return "";
+  const placeHolder = fs.readFileSync(path.join(__dirname, "static/placeholder.txt"), "utf-8");
+  return `data:image/png;base64, ${placeHolder.toString()}`;
 }
 
 class SVGAudioPlayerBuilder {
@@ -51,7 +66,7 @@ class SVGAudioPlayerBuilder {
               display: inline-block;
               font-weight: bold;
               color: darkred;
-              animation: horizontal-tape 10s infinite;
+              animation: ${values.artist ? "horizontal-tape 10s infinite" : "none"};
             }
             
             #album-image {
@@ -76,8 +91,8 @@ class SVGAudioPlayerBuilder {
           <div id="player-container">
             <img id="album-image" src="${base64}" alt="Album\'s image" width="100" height="100" />
             <div id="information-container">
-              <label id="song-name-label">${values?.song}</label>
-              <label id="artist-name-label">${values?.artist}</label>
+              <label id="song-name-label">${values?.song ?? "-"}</label>
+              <label id="artist-name-label">${values?.artist ?? "-"}</label>
             </div>
           </div>
         </div>

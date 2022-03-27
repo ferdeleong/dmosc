@@ -44,18 +44,15 @@ app.get("/currently-playing", async (req, res) => {
   });
 
   const song = data?.item;
-  if (data["is_playing"] && song?.name && song?.artists.length && song?.album?.images.length) {
-    const svg = await SVGAudioPlayerBuilder.loadTemplate({
-      song: song.name,
-      artist: song?.artists[0].name,
-      image: song?.album.images[0].url,
-    });
+  const svg = await SVGAudioPlayerBuilder.loadTemplate({
+    song: song?.name,
+    artist: song?.artists[0].name,
+    image: song?.album.images[0].url,
+  });
 
-    res.setHeader("Content-Type", "image/svg+xml");
-    res.setHeader("Cache-Control", "s-maxage=1");
-    return res.status(200).send(svg);
-  }
-  return res.status(200);
+  res.setHeader("Content-Type", "image/svg+xml");
+  res.setHeader("Cache-Control", "s-maxage=1");
+  return res.status(200).send(svg);
 });
 
 app.get("/", (_, res) => {
