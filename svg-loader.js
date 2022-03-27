@@ -68,9 +68,9 @@ class SvgLoader {
             }
             
             #status-label {
-              font-weight: lighter;
-              color: lightgray;
-              font-size: small;
+              font-weight: bold;
+              color: ghostwhite;
+              font-size: smaller;
               text-align: right;
               opacity: 0.8;
             }

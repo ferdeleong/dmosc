@@ -47,8 +47,8 @@ app.get("/currently-playing", async (req, res) => {
     }
   });
 
-  if (!data || !data?.is_playing) {
-    return res.redirect("/recently-played");
+  if (!data || !data?.is_playing || !data?.item?.name) {
+    return res.status(301).redirect("/recently-played");
   }
 
   const song = data?.item;
