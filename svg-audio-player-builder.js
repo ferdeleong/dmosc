@@ -2,6 +2,8 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 
+const AUDIO_BARS = 80;
+
 function isUrlValid(word) {
   let url;
   try {
@@ -43,10 +45,11 @@ class SVGAudioPlayerBuilder {
               width: 90%;
               background-color: #6667AB;
               border-radius: 5px;
+              overflow-y: hidden;
             }
             
             #information-container {
-              width: 45%;
+              width: 70%;
               margin-left: 20px;
               display: flex;
               flex-direction: column;
@@ -66,12 +69,47 @@ class SVGAudioPlayerBuilder {
               display: inline-block;
               font-weight: bold;
               color: darkred;
-              animation: ${values.artist ? "horizontal-tape 10s infinite" : "none"};
+              margin-bottom: 20px;
+              animation: ${values.artist ? "horizontal-tape 10s" : "none"};
             }
             
             #album-image {
               border-radius: 5px;
             }
+            
+            #bars {
+              width: 100%;
+              height: 30px;
+              bottom: 2px;
+              position: absolute;
+              margin: 0;
+              padding: 0;
+              overflow-y: hidden;
+            }
+            
+            .bar {
+              width: 3px;
+              bottom: 2px;
+              height: 5px;
+              position: absolute;
+              background: yellow;
+              animation: audio-bar-pop 0ms -800ms linear infinite alternate;
+            }
+            
+            ${(() => {
+              let css = "";
+              let offset = 1;
+              for (let i = 1; i <= AUDIO_BARS; ++i) {
+                css += `
+                  .bar:nth-child(${i}) {
+                    left: ${offset}px;
+                    animation-duration: ${Math.floor(Math.random() * (1100 - 800 + 1)) + 800}ms;
+                  }
+                `;
+                offset += 4;
+              }
+              return css;
+            })()}
             
             @keyframes horizontal-tape {
               0% {
@@ -80,11 +118,19 @@ class SVGAudioPlayerBuilder {
               30% {
                 transform: translateX(0%);
               }
-              60% {
+              100% {
                 transform: translateX(0%);
               }
+            }
+            
+            @keyframes audio-bar-pop {
+              0% {
+                height: 5px;
+                opacity: .4;
+              }
               100% {
-                transform: translateX(150%);
+                height: 20px;
+                opacity: 0.95;
               }
             }
           </style>
@@ -93,6 +139,15 @@ class SVGAudioPlayerBuilder {
             <div id="information-container">
               <label id="song-name-label">${values?.song ?? "-"}</label>
               <label id="artist-name-label">${values?.artist ?? "-"}</label>
+              <div id="bars">
+                ${(() => {
+                  let bars = "";
+                  for (let i = 1; i <= AUDIO_BARS; ++i) {
+                    bars += "<div class='bar'></div>";
+                  }
+                  return bars;
+                })()}
+              </div>
             </div>
           </div>
         </div>

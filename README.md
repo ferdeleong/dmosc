@@ -1,2 +1,1 @@
-![](https://readme-spotify.herokuapp.com/currently-playing?)
-
+[![](https://readme-spotify.herokuapp.com/currently-playing?)](#)
