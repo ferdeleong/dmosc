@@ -1,26 +1,14 @@
 const axios = require("axios");
 const express = require("express");
-const State = require("./state");
 const {applicationUrl} = require("./config");
-const path = require("path");
+const State = require("./state");
+const SVGAudioPlayerBuilder = require("./svg-audio-player-builder");
 
 const authSpotifyUrl = new URL("https://accounts.spotify.com");
 const spotifyApiUrl = new URL("https://api.spotify.com")
 let state = new State();
 
 const app = express();
-
-app.set('views', './views');
-app.set('view engine', 'pug');
-
-app.use(express.static('static'))
-
-app.get("/test", (_, res) => {
-  console.log(1);
-  res.setHeader("Content-Type", "text/html");
-  res.setHeader("Cache-Control", "max-age=1");
-  res.render("index.pug", { name: "Oscar" });
-});
 
 app.get("/validate", async (_, res) => {
   authSpotifyUrl.pathname = "/authorize";
@@ -32,7 +20,7 @@ app.get("/validate", async (_, res) => {
 });
 
 app.get("/callback", async (req, res) => {
-  const { code } = req.query;
+  const {code} = req.query;
   await state.createToken(code);
   return res.status(200).redirect("/");
 });
@@ -48,14 +36,26 @@ app.use((_, res, next) => {
 
 app.get("/currently-playing", async (req, res) => {
   spotifyApiUrl.pathname = "/v1/me/player/currently-playing";
-  const { data } = await axios.get(spotifyApiUrl.toString(), {
+  const {data} = await axios.get(spotifyApiUrl.toString(), {
     headers: {
       "Authorization": `Bearer ${state.accessToken}`,
       "Content-Type": "application/json"
     }
   });
-  console.log(data);
-  return res.status(200).json(data);
+
+  const song = data?.item;
+  if (data["is_playing"] && song?.name && song?.artists.length && song?.album?.images.length) {
+    const svg = await SVGAudioPlayerBuilder.loadTemplate({
+      song: song.name,
+      artist: song?.artists[0].name,
+      image: song?.album.images[0].url,
+    });
+
+    res.setHeader("Content-Type", "image/svg+xml");
+    res.setHeader("Cache-Control", "s-maxage=1");
+    return res.status(200).send(svg);
+  }
+  return res.status(200);
 });
 
 app.get("/", (_, res) => {
