@@ -77,10 +77,10 @@ class SVGAudioPlayerBuilder {
               border-radius: 5px;
             }
             
-            #bars {
+            #bars-container {
               width: 100%;
               height: 30px;
-              bottom: 2px;
+              bottom: 1px;
               position: absolute;
               margin: 0;
               padding: 0;
@@ -92,7 +92,7 @@ class SVGAudioPlayerBuilder {
               bottom: 2px;
               height: 5px;
               position: absolute;
-              background: yellow;
+              background: #FAFA33;
               animation: audio-bar-pop 0ms -800ms linear infinite alternate;
             }
             
@@ -103,7 +103,7 @@ class SVGAudioPlayerBuilder {
                 css += `
                   .bar:nth-child(${i}) {
                     left: ${offset}px;
-                    animation-duration: ${Math.floor(Math.random() * (1100 - 800 + 1)) + 800}ms;
+                    animation-duration: ${Math.floor(Math.random() * (1350 - 800 + 1)) + 800}ms;
                   }
                 `;
                 offset += 4;
@@ -126,7 +126,7 @@ class SVGAudioPlayerBuilder {
             @keyframes audio-bar-pop {
               0% {
                 height: 5px;
-                opacity: .4;
+                opacity: .2;
               }
               100% {
                 height: 20px;
@@ -139,14 +139,8 @@ class SVGAudioPlayerBuilder {
             <div id="information-container">
               <label id="song-name-label">${values?.song ?? "-"}</label>
               <label id="artist-name-label">${values?.artist ?? "-"}</label>
-              <div id="bars">
-                ${(() => {
-                  let bars = "";
-                  for (let i = 1; i <= AUDIO_BARS; ++i) {
-                    bars += "<div class='bar'></div>";
-                  }
-                  return bars;
-                })()}
+              <div id="bars-container">
+                ${Array.from(Array(AUDIO_BARS)).reduce((css) => css + "<div class='bar'></div>", "")}
               </div>
             </div>
           </div>
