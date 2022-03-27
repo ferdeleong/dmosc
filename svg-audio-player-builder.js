@@ -70,7 +70,7 @@ class SVGAudioPlayerBuilder {
               font-weight: bold;
               color: darkred;
               margin-bottom: 20px;
-              animation: ${values.artist ? "horizontal-tape 10s" : "none"};
+              animation: ${values.artist ? "horizontal-tape 8s" : "none"};
             }
             
             #album-image {
