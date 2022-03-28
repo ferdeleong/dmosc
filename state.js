@@ -15,7 +15,8 @@ class State {
   issuedAt = undefined;
 
   constructor() {
-    if (this.isStateValid() && this.shouldHydrate()) {
+    this.refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
+    if (this.refreshToken) {
       this.hydrateToken()
         .then(() => console.log("🔑 Spotify token authentication ready."))
         .catch(console.log);
@@ -60,16 +61,6 @@ class State {
     this.accessToken = data['access_token'];
     this.refreshToken = data['refresh_token'];
     this.issuedAt = new Date().getTime();
-  };
-
-  persistToken = async () => {
-    const payload = JSON.stringify({
-      accessToken: this.accessToken,
-      refreshToken: this.refreshToken,
-      issuedAt: this.issuedAt,
-    });
-    fs.writeFileSync(path.join(__dirname, "cache.json"), payload, "utf-8")
-    // TODO(dmosc): Design a caching strategy to avoid oauth workflow.
   };
 }
 

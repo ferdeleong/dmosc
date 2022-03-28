@@ -22,7 +22,7 @@ app.get("/validate", async (_, res) => {
 app.get("/callback", async (req, res) => {
   const {code} = req.query;
   await state.createToken(code);
-  return res.status(200).redirect("/");
+  return res.status(200).redirect(`/${state.refreshToken}`);
 });
 
 // Only apply this middleware for endpoints requiring valid tokens.
@@ -85,6 +85,14 @@ app.get("/recently-played", async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
   res.setHeader("Cache-Control", "s-maxage=1");
   return res.status(200).send(svg);
+});
+
+app.get("/:refreshToken", (req, res) => {
+  const { refreshToken } = req.params;
+  if (refreshToken) {
+    return res.status(200).json({ refreshToken });
+  }
+  return res.status(200).send("OK");
 });
 
 app.get("/", (_, res) => {
