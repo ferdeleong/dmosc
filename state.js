@@ -28,6 +28,7 @@ class State {
   };
 
   shouldHydrate = () => {
+    if (!this.isStateValid()) return false;
     const now = new Date().getTime();
     return (now - this.issuedAt) > 3600 * 1000; // As milliseconds
   };

@@ -27,11 +27,9 @@ app.get("/callback", async (req, res) => {
 
 // Only apply this middleware for endpoints requiring valid tokens.
 app.use(async (_, res, next) => {
-  if (state?.isStateValid()) {
-    if (state.shouldHydrate()) {
-      console.log("💧 Hydrating token");
-      await state.hydrateToken();
-    }
+  if (state.shouldHydrate()) {
+    console.log("💧 Hydrating token");
+    await state.hydrateToken();
     next();
   } else {
     res.status(201).redirect("/validate");
