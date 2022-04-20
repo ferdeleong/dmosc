@@ -1,8 +1,6 @@
 require('dotenv').config();
 const axios = require("axios");
 const {applicationUrl} = require("./config");
-const fs = require("fs");
-const path = require("path");
 
 const authorizationPayload = Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`);
 const authSpotifyUrl = new URL("https://accounts.spotify.com");
@@ -28,7 +26,6 @@ class State {
   };
 
   shouldHydrate = () => {
-    if (!this.isStateValid()) return false;
     const now = new Date().getTime();
     return (now - this.issuedAt) > 3600 * 1000; // As milliseconds
   };
@@ -60,7 +57,6 @@ class State {
       }
     );
     this.accessToken = data['access_token'];
-    this.refreshToken = data['refresh_token'];
     this.issuedAt = new Date().getTime();
   };
 }

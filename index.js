@@ -22,18 +22,17 @@ app.get("/validate", async (_, res) => {
 app.get("/callback", async (req, res) => {
   const {code} = req.query;
   await state.createToken(code);
-  return res.status(200).redirect(`/${state.refreshToken}`);
+  return res.status(200).redirect(`/currently-playing?code=${state.refreshToken}`);
 });
 
 // Only apply this middleware for endpoints requiring valid tokens.
 app.use(async (_, res, next) => {
+  if (!state.isStateValid()) return res.status(201).redirect("/validate");
   if (state.shouldHydrate()) {
     console.log("💧 Hydrating token");
     await state.hydrateToken();
-    next();
-  } else {
-    res.status(201).redirect("/validate");
   }
+  next();
 });
 
 app.get("/currently-playing", async (req, res) => {
