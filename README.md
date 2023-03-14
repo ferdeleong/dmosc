@@ -1,19 +1,26 @@
-# HI, 🌸🍄 I'M FERNANDA DE LEON
+<h1 align="center"> Hi there!
 
+____
+  
 <img src="https://user-images.githubusercontent.com/78885738/224913404-d3bb0943-aa1c-44dd-a464-8ff32fcee537.gif" width="95%" height="300"></img>
 
 ## LANGUAGES AND TOOLS
 
-![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)&nbsp;
-![C++](https://img.shields.io/badge/-C++-05122A?style=flat&logo=C%2B%2B&logoColor=00599C)&nbsp;
-![Java](https://img.shields.io/badge/-Java-05122A?style=flat&logo=java)&nbsp;
-![Angular](https://img.shields.io/badge/-Angular-05122A?style=flat&logo=angular&logoColor=a6120d)&nbsp;
-![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=react)&nbsp;\
-![Node.js](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)&nbsp;
-![HTML](https://img.shields.io/badge/-HTML-05122A?style=flat&logo=HTML5)&nbsp;
-![CSS](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=CSS3&logoColor=1572B6)&nbsp;
-![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)&nbsp;
-![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)&nbsp;
+![C++](https://img.shields.io/badge/-C++-05122A?style=for-the-badge&logo=C%2B%2B&logoColor=00599C)&nbsp;
+![Python](https://img.shields.io/badge/-Python-05122A?style=for-the-badge&logo=python)&nbsp;
+![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=for-the-badge&logo=javascript)&nbsp;
+![Java](https://img.shields.io/badge/-Java-05122A?style=for-the-badge&logo=java)&nbsp;
+![Clojure](https://img.shields.io/badge/-Clojure-05122A?style=for-the-badge&logo=clojure)&nbsp;
+![Solidity](https://img.shields.io/badge/-Solidity-05122A?style=for-the-badge&logo=solidity)&nbsp;
+![Angular](https://img.shields.io/badge/-Angular-05122A?style=for-the-badge&logo=angular&logoColor=a6120d)&nbsp;
+![React](https://img.shields.io/badge/-React-05122A?style=for-the-badge&logo=react)&nbsp;\
+![Next.js](https://img.shields.io/badge/-Next.js-05122A?style=for-the-badge&logo=next.js)&nbsp;
+![Node.js](https://img.shields.io/badge/-Node.js-05122A?style=for-the-badge&logo=node.js)&nbsp;
+![HTML](https://img.shields.io/badge/-HTML-05122A?style=for-the-badge&logo=HTML5)&nbsp;
+![CSS](https://img.shields.io/badge/-CSS-05122A?style=for-the-badge&logo=CSS3&logoColor=1572B6)&nbsp;
+![Git](https://img.shields.io/badge/-Git-05122A?style=for-the-badge&logo=Git)&nbsp;
+![GitHub](https://img.shields.io/badge/-GitHub-05122A?style=for-the-badge&logo=github)&nbsp;
+![Linux](https://img.shields.io/badge/-Linux-05122A?style=for-the-badge&logo=linux)&nbsp;
 
 
 <p align="left">
