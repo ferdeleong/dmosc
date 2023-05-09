@@ -1,8 +1,15 @@
 <h1 align="center"> Hi there!
-
 ____
   
 <img src="https://user-images.githubusercontent.com/78885738/224913404-d3bb0943-aa1c-44dd-a464-8ff32fcee537.gif" width="95%" height="300"></img>
+
+## I'M CURRENTLY LEARNING
+- [x] Machine Learning
+- [x] Linux
+
+## EXPERIENCE ON
+- [x] Full stack web development
+- [x] Databases
 
 ## LANGUAGES AND TOOLS
 
