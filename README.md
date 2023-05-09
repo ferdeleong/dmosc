@@ -9,6 +9,11 @@
 ## EXPERIENCE ON
 - [x] Full stack web development
 - [x] Databases
+- [x] Algorithms and Data Structures
+- [x] Introduction to compilers
+- [x] Multi-objective Systems
+- [x] Discrete Mathematics
+- [x] Networks
 
 ## LANGUAGES AND TOOLS
 
