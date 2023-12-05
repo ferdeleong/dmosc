@@ -1,6 +1,6 @@
 <h1 align="center"> Hi there!
   
-<img src="https://user-images.githubusercontent.com/78885738/224913404-d3bb0943-aa1c-44dd-a464-8ff32fcee537.gif" width="95%" height="300"></img>
+![tumblr_mq968dWKAg1spo3yuo1_500](https://github.com/ferdeleong/ferdeleong/assets/78885738/246b8670-2b4c-4aea-a47c-7c00f3f2bd3c)
 
 ## I'M CURRENTLY LEARNING
 - [x] Machine Learning
@@ -11,7 +11,7 @@
 - [x] Databases
 - [x] Algorithms and Data Structures
 - [x] Introduction to compilers
-- [x] Multi-objective Systems
+- [x] Multi-agent Systems
 - [x] Discrete Mathematics
 - [x] Networks
 
