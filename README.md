@@ -4,6 +4,7 @@
 
 ## I'M CURRENTLY LEARNING
 - [x] Machine Learning
+- [X] Quantum Computing 
 - [x] Linux
 
 ## EXPERIENCE ON
